@@ -1,0 +1,17 @@
+// Кэширует файлы игры, чтобы она работала без интернета.
+// При изменении файлов увеличьте номер версии.
+const CACHE = 'blockpuzzle-v1';
+const FILES = ['./', 'index.html', 'style.css', 'game.js', 'manifest.json', 'icon-180.png', 'icon-192.png', 'icon-512.png'];
+
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting()));
+});
+
+self.addEventListener('activate', e => {
+  e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))));
+  self.clients.claim();
+});
+
+self.addEventListener('fetch', e => {
+  e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
+});

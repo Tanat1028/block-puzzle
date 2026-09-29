@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#1b2a55">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Block Puzzle">
+<title>Block Puzzle</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header id="hud">
+    <div class="best"><span class="crown">👑</span><span id="best">0</span></div>
+    <div id="score">0</div>
+    <button id="menuBtn" aria-label="Меню">⚙</button>
+  </header>
+  <canvas id="game"></canvas>
+</div>
+
+<div id="overlay" class="hidden">
+  <div class="panel">
+    <h1 id="ovTitle">Игра окончена</h1>
+    <div class="ovLabel">Счёт</div>
+    <div id="ovScore">0</div>
+    <div class="ovLabel">Рекорд: <span id="ovBest">0</span></div>
+    <div id="ovNewBest" class="hidden">Новый рекорд!</div>
+    <button id="restartBtn">Играть снова</button>
+  </div>
+</div>
+
+<div id="menu" class="hidden">
+  <div class="panel">
+    <h1>Пауза</h1>
+    <label class="toggle"><input type="checkbox" id="soundToggle" checked> Звук</label>
+    <label class="toggle"><input type="checkbox" id="vibroToggle" checked> Вибрация</label>
+    <button id="resumeBtn">Продолжить</button>
+    <button id="newGameBtn" class="secondary">Новая игра</button>
+  </div>
+</div>
+
+<script src="game.js"></script>
+<script>
+  if ('serviceWorker' in navigator && location.protocol === 'https:') {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  }
+</script>
+</body>
+</html>

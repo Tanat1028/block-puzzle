@@ -1,0 +1,13 @@
+# Зависимости npm (восстанавливаются командой npm install)
+node_modules/
+
+# Результаты сборки Android
+android/app/build/
+android/build/
+android/.gradle/
+android/local.properties
+*.apk
+
+# Файлы редакторов
+.idea/
+.vscode/

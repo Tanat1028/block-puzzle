@@ -1,0 +1,126 @@
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(180deg, #2a3f86 0%, #1b2a55 100%);
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  overscroll-behavior: none;
+}
+
+#app {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+#hud {
+  position: relative;
+  height: 110px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#hud .best {
+  position: absolute;
+  left: 16px;
+  top: 14px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffd84a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#score {
+  font-size: 52px;
+  font-weight: 800;
+  text-shadow: 0 3px 0 rgba(0, 0, 0, .25);
+  transition: transform .15s;
+}
+#score.bump { transform: scale(1.15); }
+
+#menuBtn {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+  font-size: 22px;
+}
+
+canvas#game {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  display: block;
+}
+
+#overlay, #menu {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 16, 40, .72);
+  z-index: 10;
+  padding: 16px;
+}
+.hidden { display: none !important; }
+
+.panel {
+  width: 100%;
+  max-width: 340px;
+  background: #2b3f88;
+  border-radius: 22px;
+  padding: 26px 22px;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .45);
+  animation: pop .25s ease-out;
+}
+@keyframes pop { from { transform: scale(.85); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.panel h1 { margin: 0 0 16px; font-size: 28px; }
+.ovLabel { opacity: .8; font-size: 16px; }
+#ovScore { font-size: 56px; font-weight: 800; margin: 4px 0 8px; }
+#ovNewBest { color: #ffd84a; font-weight: 700; margin-top: 8px; font-size: 20px; }
+
+.panel button {
+  display: block;
+  width: 100%;
+  margin-top: 18px;
+  padding: 15px;
+  border: 0;
+  border-radius: 14px;
+  background: #4cc15a;
+  box-shadow: 0 4px 0 #2f8a3b;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+}
+.panel button.secondary { background: #e0664a; box-shadow: 0 4px 0 #a9442e; margin-top: 12px; }
+.panel button:active { transform: translateY(3px); box-shadow: 0 1px 0 #2f8a3b; }
+
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 19px;
+  padding: 10px 4px;
+}
+.toggle input { width: 24px; height: 24px; }
